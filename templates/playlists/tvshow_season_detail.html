@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block head_title %}
+        {{ object.title }}/
+        {% endblock head_title %}
+        {{ block.super }}
+    </title>
+</head>
+<body>
+    {% block content %}
+        <h1>{{ object.title }}</h1>
+    <li>{{ instance.get_short_display }} {{ instance.slug }}</li>
+    <h3>Episodes:</h3>
+    {% for episode in object.get_episodes %}
+    
+    <div>
+        {% include 'videos/embed.html' with video_id=episode.video.get_video_id %}
+    </div>
+    {% endfor %}
+    {% endblock %}
+</body>
+</html>

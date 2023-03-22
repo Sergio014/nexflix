@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block head_title %}
+        {{ title }}/
+        {{ block.super }}
+        {% endblock head_title %}
+    </title>
+</head>
+<body>
+    {% block content %}
+        <h1>{{ title }}</h1>
+    <ul>
+    {% for instance in object_list %}
+    <li>{{ instance.title }} {{ instance.get_short_display }} {{ instance.slug }}
+    </li>
+    {% endfor %}
+    </ul>
+    {% endblock content %}
+</body>
+</html>
